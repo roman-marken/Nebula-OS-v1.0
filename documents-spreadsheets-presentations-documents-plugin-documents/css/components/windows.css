@@ -1,0 +1,131 @@
+.window {
+  position: fixed;
+  z-index: 10;
+  display: grid;
+  grid-template-rows: 38px 1fr;
+  min-width: 300px;
+  min-height: 220px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(var(--window-rgb), var(--window-alpha));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px) saturate(140%);
+  transform-origin: top left;
+  animation: windowOpen 180ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.window.is-closing {
+  animation: windowClose 140ms ease both;
+}
+
+.window.is-minimized {
+  display: none;
+}
+
+.window.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 18px 58px rgba(0, 0, 0, 0.46), 0 0 0 1px rgba(41, 211, 194, 0.28);
+}
+
+.window-titlebar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-width: 0;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent);
+  cursor: grab;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  overflow: hidden;
+  padding: 0 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.window-controls {
+  display: flex;
+  gap: 6px;
+  padding: 0 8px;
+}
+
+.window-control {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  cursor: pointer;
+}
+
+.window-control:hover {
+  background: rgba(41, 211, 194, 0.22);
+}
+
+.window-control.close:hover {
+  background: rgba(255, 84, 112, 0.54);
+}
+
+.window-content {
+  min-height: 0;
+  overflow: auto;
+  padding: 14px;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+}
+
+.resize-handle::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+}
+
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.app-toolbar button,
+.settings-panel button,
+.calc-button {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-glass);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.app-toolbar button {
+  min-height: 32px;
+  padding: 0 10px;
+}
+
+.app-toolbar button:hover,
+.settings-panel button:hover,
+.calc-button:hover {
+  border-color: var(--accent);
+}

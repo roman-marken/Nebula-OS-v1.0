@@ -1,0 +1,95 @@
+.taskbar {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  left: 12px;
+  z-index: 4600;
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(var(--window-rgb), 0.78);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+.start-button,
+.quick-launch button,
+.running-apps button,
+.system-tray button {
+  display: grid;
+  place-items: center;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg-glass);
+  cursor: pointer;
+}
+
+.start-button {
+  width: 42px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #071014;
+  font-weight: 900;
+}
+
+.quick-launch,
+.running-apps,
+.system-tray {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.quick-launch button {
+  width: 38px;
+}
+
+.running-apps {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.running-apps button {
+  grid-template-columns: auto 1fr;
+  width: min(160px, 26vw);
+  padding: 0 10px;
+  gap: 7px;
+  justify-content: start;
+}
+
+.running-apps button.is-active {
+  border-color: var(--accent);
+  box-shadow: inset 0 -2px var(--accent);
+}
+
+.running-apps button span:last-child {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.system-tray {
+  justify-content: end;
+  color: var(--text-secondary);
+}
+
+#trayClock {
+  min-width: 44px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .quick-launch {
+    display: none;
+  }
+
+  .taskbar {
+    grid-template-columns: auto 1fr auto;
+  }
+}

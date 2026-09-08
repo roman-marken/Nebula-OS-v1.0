@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nebula OS - браузерная операционная система на HTML, CSS и JavaScript.">
+  <title>Nebula OS</title>
+  <link rel="stylesheet" href="css/themes/dark.css">
+  <link rel="stylesheet" href="css/themes/light.css">
+  <link rel="stylesheet" href="css/themes/custom.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components/windows.css">
+  <link rel="stylesheet" href="css/components/taskbar.css">
+  <link rel="stylesheet" href="css/components/terminal.css">
+  <link rel="stylesheet" href="css/components/widgets.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="nebula-extensions.css">
+</head>
+<body class="theme-dark wallpaper-aurora">
+  <section class="boot-screen" id="bootScreen" aria-label="Экран загрузки">
+    <div class="starfield" aria-hidden="true"></div>
+    <div class="boot-card">
+      <div class="nebula-logo" aria-hidden="true">
+        <span></span>
+        <strong>N</strong>
+      </div>
+      <h1>Nebula OS</h1>
+      <p id="bootStatus">Инициализация ядра...</p>
+      <div class="progress-shell" aria-hidden="true">
+        <div class="progress-fill" id="bootProgress"></div>
+      </div>
+      <output id="bootPercent">0%</output>
+    </div>
+  </section>
+
+  <main class="desktop" id="desktop" aria-label="Рабочий стол Nebula OS">
+    <div class="desktop-shade" aria-hidden="true"></div>
+
+    <section class="desktop-icons" id="desktopIcons" aria-label="Приложения">
+      <button class="desktop-icon" type="button" data-app="terminal" aria-label="Открыть Терминал">
+        <span class="icon-glyph">⌁</span>
+        <span>Терминал</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="files" aria-label="Открыть Файлы">
+        <span class="icon-glyph">▣</span>
+        <span>Файлы</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="settings" aria-label="Открыть Настройки">
+        <span class="icon-glyph">⚙</span>
+        <span>Настройки</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="monitor" aria-label="Открыть Монитор">
+        <span class="icon-glyph">▥</span>
+        <span>Монитор</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="calculator" aria-label="Открыть Калькулятор">
+        <span class="icon-glyph">＋</span>
+        <span>Калькулятор</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="browser" aria-label="Открыть Browser">
+        <span class="icon-glyph">⌕</span>
+        <span>Browser</span>
+      </button>
+      <button class="desktop-icon" type="button" data-app="play" aria-label="Открыть Play">
+        <span class="icon-glyph">▶</span>
+        <span>Play</span>
+      </button>
+    </section>
+
+    <section class="widgets" aria-label="Виджеты">
+      <article class="widget clock-widget" aria-label="Часы">
+        <span id="clockTime">00:00</span>
+        <small id="clockDate">--</small>
+      </article>
+      <article class="widget weather-widget" aria-label="Погода">
+        <span>18°C</span>
+        <small>Chisinau · clear sky</small>
+      </article>
+      <article class="widget mini-monitor" aria-label="Системный монитор">
+        <div><span>CPU</span><meter id="miniCpu" min="0" max="100" value="22"></meter></div>
+        <div><span>RAM</span><meter id="miniRam" min="0" max="100" value="48"></meter></div>
+      </article>
+    </section>
+
+    <div class="selection-box" id="selectionBox" aria-hidden="true"></div>
+    <section class="window-layer" id="windowLayer" aria-live="polite"></section>
+  </main>
+
+  <section class="launcher" id="launcher" aria-label="Nebula launcher" aria-hidden="true">
+    <header class="launcher-header">
+      <div>
+        <strong>Nebula Launcher</strong>
+        <span>Быстрый запуск и системные действия</span>
+      </div>
+      <button type="button" class="launcher-close" id="launcherClose" aria-label="Закрыть launcher">×</button>
+    </header>
+    <label class="launcher-search">
+      <span>⌕</span>
+      <input id="launcherSearch" type="search" autocomplete="off" placeholder="Поиск приложения или команды">
+    </label>
+    <div class="launcher-grid" id="launcherGrid"></div>
+    <footer class="launcher-footer">
+      <button type="button" data-launcher-action="tile">Уложить окна</button>
+      <button type="button" data-launcher-action="theme">Сменить тему</button>
+      <button type="button" data-launcher-action="wallpaper">Сменить обои</button>
+    </footer>
+  </section>
+
+  <nav class="taskbar" id="taskbar" aria-label="Панель задач">
+    <button class="start-button" type="button" id="startButton" title="Nebula menu" aria-label="Меню Nebula">N</button>
+    <div class="quick-launch" id="quickLaunch" aria-label="Быстрый запуск"></div>
+    <div class="running-apps" id="runningApps" aria-label="Запущенные приложения"></div>
+    <div class="system-tray" aria-label="Системный трей">
+      <button type="button" id="notifyButton" title="Уведомления" aria-label="Уведомления">◌</button>
+      <time id="trayClock">00:00</time>
+    </div>
+  </nav>
+
+  <section class="notifications" id="notifications" aria-live="assertive" aria-label="Уведомления"></section>
+  <div class="context-menu" id="contextMenu" role="menu" aria-hidden="true"></div>
+
+  <script defer src="js/core/EventBus.js"></script>
+  <script defer src="js/core/Store.js"></script>
+  <script defer src="js/core/Reactive.js"></script>
+  <script defer src="js/core/VirtualDOM.js"></script>
+  <script defer src="js/core/Component.js"></script>
+  <script defer src="js/utils/debounce.js"></script>
+  <script defer src="js/utils/throttle.js"></script>
+  <script defer src="js/utils/memoize.js"></script>
+  <script defer src="js/utils/format.js"></script>
+  <script defer src="js/utils/validators.js"></script>
+  <script defer src="js/components/Notification.js"></script>
+  <script defer src="js/components/ContextMenu.js"></script>
+  <script defer src="js/components/Taskbar.js"></script>
+  <script defer src="js/components/Dock.js"></script>
+  <script defer src="js/components/WindowManager.js"></script>
+  <script defer src="js/apps/Terminal.js"></script>
+  <script defer src="js/apps/FileManager.js"></script>
+  <script defer src="js/apps/Settings.js"></script>
+  <script defer src="js/apps/SystemMonitor.js"></script>
+  <script defer src="js/apps/Calculator.js"></script>
+  <script defer src="nebula-extensions.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

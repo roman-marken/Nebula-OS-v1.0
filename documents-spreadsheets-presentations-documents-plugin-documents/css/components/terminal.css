@@ -1,0 +1,56 @@
+.terminal {
+  height: 100%;
+  min-height: 300px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background:
+    linear-gradient(rgba(41, 211, 194, 0.04) 50%, rgba(255, 255, 255, 0.02) 50%),
+    #05080b;
+  background-size: 100% 4px;
+  border-radius: 6px;
+  color: #b8ffe8;
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  text-shadow: 0 0 8px rgba(41, 211, 194, 0.38);
+}
+
+.terminal-output {
+  overflow: auto;
+  padding: 14px;
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.terminal-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 14px;
+  border-top: 1px solid rgba(41, 211, 194, 0.18);
+}
+
+.terminal-prompt {
+  color: var(--accent-warm);
+}
+
+.terminal-input {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #d9fff4;
+  caret-color: var(--accent-warm);
+  font: inherit;
+}
+
+.terminal .success {
+  color: var(--success);
+}
+
+.terminal .error {
+  color: #ff9cad;
+}
+
+.terminal .muted {
+  color: #80a0a3;
+}

@@ -1,0 +1,19 @@
+.theme-light {
+  --bg-primary: #edf3f6;
+  --bg-secondary: #f8fbfd;
+  --bg-elevated: rgba(255, 255, 255, 0.82);
+  --window-rgb: 255, 255, 255;
+  --bg-glass: rgba(255, 255, 255, 0.56);
+  --text-primary: #18202f;
+  --text-secondary: #41506b;
+  --muted: #69778f;
+  --accent: #0f9f94;
+  --accent-strong: #c23874;
+  --accent-warm: #a66f00;
+  --accent-cool: #336edb;
+  --danger: #c8374f;
+  --success: #168b51;
+  --border: rgba(24, 32, 47, 0.16);
+  --shadow: 0 16px 42px rgba(68, 84, 110, 0.24);
+  --window-alpha: 0.9;
+}

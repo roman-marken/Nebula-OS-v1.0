@@ -1,0 +1,15 @@
+{
+  "name": "bunker-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Online cyberpunk survival game Bunker 2026.",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js && node --check src/game/game-service.js && node --check src/realtime/ws-server.js && node --check src/security/auth.js && node --check src/storage/store.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
