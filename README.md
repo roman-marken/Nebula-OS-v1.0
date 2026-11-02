@@ -14,17 +14,6 @@ Nebula OS - это браузерная операционная система,
 index.html
 ```
 
-После переноса на диск `G:` основной путь:
-
-```text
-file:///G:/Nebula-OS/index.html
-```
-
-Исходная копия лежит здесь:
-
-```text
-C:\Users\Acer\Documents\Codex\2026-05-01\documents-spreadsheets-presentations-documents-plugin-documents\index.html
-```
 
 ## Что реализовано
 
